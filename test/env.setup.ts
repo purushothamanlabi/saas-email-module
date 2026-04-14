@@ -1,0 +1,12 @@
+process.env.NODE_ENV = 'test';
+process.env.REDIS_HOST = '127.0.0.1';
+process.env.REDIS_PORT = '6379';
+process.env.AWS_REGION = 'ap-south-1';
+process.env.AWS_ACCESS_KEY_ID = 'test_access_key';
+process.env.AWS_SECRET_ACCESS_KEY = 'test_secret_key';
+process.env.MAIL_FROM_EMAIL = 'no-reply@example.com';
+process.env.MAIL_FROM_NAME = 'Test App';
+process.env.MAIL_REPLY_TO = 'support@example.com';
+process.env.MAIL_WORKER_CONCURRENCY = '1';
+process.env.MAIL_WORKER_ENABLED = 'false';
+process.env.APP_URL = 'https://example.com';

@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import { App } from 'supertest/types';
+import { MAIL_QUEUE, REDIS_CONNECTION } from '../src/mail/mail.queue';
 import { AppModule } from './../src/app.module';
 
 describe('AppController (e2e)', () => {
@@ -10,7 +11,12 @@ describe('AppController (e2e)', () => {
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
-    }).compile();
+    })
+      .overrideProvider(MAIL_QUEUE)
+      .useValue({ close: jest.fn() })
+      .overrideProvider(REDIS_CONNECTION)
+      .useValue({ disconnect: jest.fn() })
+      .compile();
 
     app = moduleFixture.createNestApplication();
     await app.init();
