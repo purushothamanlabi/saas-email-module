@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { encode } from 'html-entities';
 
 @Injectable()
 export class TemplateService {
@@ -84,11 +85,6 @@ export class TemplateService {
   }
 
   private escapeHtml(value: string): string {
-    return value
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;');
+    return encode(value, { level: 'html5', mode: 'specialChars' });
   }
 }
